@@ -55,7 +55,7 @@ FOR i=0,lim DO BEGIN
        h100: json_struct.(i).h100 $
        }
   fn = (tag_names(json_struct))[i] + '.sav'
-  SAVE, p, s, FILENAME = fn
+  SAVE, json_struct, p, s, FILENAME = fn
 ENDFOR
 
 end
