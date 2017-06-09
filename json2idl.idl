@@ -1,4 +1,4 @@
-file = DIALOG_PICKFILE(FILER='*.txt')
+file = DIALOG_PICKFILE(FILTER='*.txt')
 OPENR, lun, file, /GET_LUN
 
 array = ''
@@ -17,10 +17,10 @@ json_struct = JSON_PARSE(final_string, /TOSTRUCT)
 
 desig_names = TAG_NAMES(json_struct)
 
-lim = SIZE(desig_names) - 1
+lim = N_ELEMENTS(desig_names) - 1
 
 FOR i=0,lim DO BEGIN
-  s = {DESIG: desig_names[i], n_data: json_struct.(i).n_data, n_fits: json_struct.(i).n_fits}
+  s = {DESIG: (desig_names)[i], n_data: json_struct.(i).n_data, n_fits: json_struct.(i).n_fits}
   p = {model: json_struct.(i).model $
        chi2:  json_struct.(i).chi2 $
        av: json_struct.(i).av $
